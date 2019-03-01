@@ -1,17 +1,34 @@
 <template>
-        <div class="register">
-                <h1>Register</h1>
-                <div>
-                        <input v-model="email" type="email" name="email" placeholder="email..." />
-                </div>
-                <div>
-                        <input v-model="password" type="password" name="password" placeholder="password..." />
-                </div>
-                <div>
-                        <button @click="submitUser">Register user</button>
-                </div>
-        </div>
+        <v-layout>
+                <v-flex xs6 offset-xs3>
+                        <div class="white elevation-2">
+                                <v-toolbar class="cyan" flat dense dark>
+                                        <v-toolbar-title>Register</v-toolbar-title>
+                                </v-toolbar>
+
+                                <div class="pl-4 pr-4 pb-2">
+                                        <div>
+                                                <input v-model="email" type="email" name="email" placeholder="email..." />
+                                        </div>
+                                        <div>
+                                                <input v-model="password" type="password" name="password" placeholder="password..." />
+                                        </div>
+                                        <div class="error" v-html="error"></div>
+                                        <div>
+                                                <v-btn class="cyan" @click="submitUser">Register user</v-btn>
+                                        </div>
+                                </div>
+                        </div>
+                </v-flex>
+        </v-layout>
 </template>
+
+<style scoped>
+ .error {
+         color: red;
+ }
+</style>
+
 
 <script>
 import AuthService from '@/services/Authentication';
@@ -20,13 +37,20 @@ export default {
         data() {
                 return {
                         email: null,
-                        password: null
+                        password: null,
+                        error: null
                 }
         },
         methods: {
                 async submitUser() {
-                        const response = await AuthService.register({ email: this.email, password: this.password });
-                        console.log(response.data);
+                        try {
+                                const response = await AuthService.register({ email: this.email, password: this.password });
+                                // console.log(response.data);
+                        } catch(error) {
+                                // console.log('Error on register new User', error);
+                                this.error = error.response.data.error;
+                        }
+
                         this.email = null;
                         this.password = null;
                 }

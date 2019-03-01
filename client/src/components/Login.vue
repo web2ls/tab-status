@@ -3,7 +3,7 @@
                 <v-flex xs6 offset-xs3>
                         <div class="white elevation-2">
                                 <v-toolbar class="cyan" flat dense dark>
-                                        <v-toolbar-title>Register</v-toolbar-title>
+                                        <v-toolbar-title>Login</v-toolbar-title>
                                 </v-toolbar>
 
                                 <div class="pl-4 pr-4 pb-2">
@@ -15,7 +15,7 @@
                                         </div>
                                         <v-alert v-html="error" :value="error" color="red"></v-alert>
                                         <div>
-                                                <v-btn class="cyan" @click="submitUser">Register</v-btn>
+                                                <v-btn class="cyan" @click="submitUser">Login</v-btn>
                                         </div>
                                 </div>
                         </div>
@@ -24,7 +24,9 @@
 </template>
 
 <style scoped>
-
+ .error {
+         color: red;
+ }
 </style>
 
 
@@ -42,7 +44,7 @@ export default {
         methods: {
                 async submitUser() {
                         try {
-                                const response = await AuthService.register({ email: this.email, password: this.password });
+                                const response = await AuthService.login({ email: this.email, password: this.password });
                                 // console.log(response.data);
                         } catch(error) {
                                 // console.log('Error on register new User', error);

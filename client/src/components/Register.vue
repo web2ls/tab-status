@@ -8,12 +8,12 @@
 
                                 <div class="pl-4 pr-4 pb-2">
                                         <div>
-                                                <input v-model="email" type="email" name="email" placeholder="email..." />
+                                                <v-text-field v-model="email" type="email" name="email" placeholder="email..." >Email</v-text-field>
                                         </div>
                                         <div>
-                                                <input v-model="password" type="password" name="password" placeholder="password..." />
+                                                <v-text-field v-model="password" type="password" name="password" placeholder="password..." ></v-text-field>
                                         </div>
-                                        <div class="error" v-html="error"></div>
+                                        <v-alert v-html="error" :value="error" color="red"></v-alert>
                                         <div>
                                                 <v-btn class="cyan" @click="submitUser">Register user</v-btn>
                                         </div>

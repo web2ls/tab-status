@@ -11,8 +11,11 @@
 
 <script>
 import PageHeader from "@/components/Header.vue";
+import store from '@/store/store';
+
 export default {
   name: "app",
+  store,
   components: {
     PageHeader
   }

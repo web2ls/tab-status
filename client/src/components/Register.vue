@@ -7,16 +7,18 @@
                                 </v-toolbar>
 
                                 <div class="pl-4 pr-4 pb-2">
-                                        <div>
-                                                <v-text-field v-model="email" type="email" name="email" placeholder="email..." >Email</v-text-field>
-                                        </div>
-                                        <div>
-                                                <v-text-field v-model="password" type="password" name="password" placeholder="password..." ></v-text-field>
-                                        </div>
-                                        <v-alert v-html="error" :value="error" color="red"></v-alert>
-                                        <div>
-                                                <v-btn class="cyan" @click="submitUser">Register</v-btn>
-                                        </div>
+                                        <form name="register-form" autocomplete="off">
+                                                <div>
+                                                        <v-text-field v-model="email" type="email" name="email" placeholder="email..." >Email</v-text-field>
+                                                </div>
+                                                <div>
+                                                        <v-text-field v-model="password" type="password" name="password" placeholder="password..." ></v-text-field>
+                                                </div>
+                                                <v-alert v-html="error" :value="error" color="red"></v-alert>
+                                                <div>
+                                                        <v-btn class="cyan" @click="submitUser">Register</v-btn>
+                                                </div>
+                                        </form>
                                 </div>
                         </div>
                 </v-flex>

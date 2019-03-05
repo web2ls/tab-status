@@ -40,7 +40,6 @@ module.exports = {
                         }
 
                         console.log('Ready for check password');
-                        console.log(user.comparePassword);
 
                         const isPasswordValid = await user.comparePassword(password);
 

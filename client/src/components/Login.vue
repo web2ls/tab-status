@@ -7,16 +7,18 @@
                                 </v-toolbar>
 
                                 <div class="pl-4 pr-4 pb-2">
-                                        <div>
-                                                <v-text-field v-model="email" type="email" name="email" placeholder="email..." >Email</v-text-field>
-                                        </div>
-                                        <div>
-                                                <v-text-field v-model="password" type="password" name="password" placeholder="password..." ></v-text-field>
-                                        </div>
-                                        <v-alert v-html="error" :value="error" color="red"></v-alert>
-                                        <div>
-                                                <v-btn class="cyan" @click="submitUser">Login</v-btn>
-                                        </div>
+                                        <form name="login-form" autocomplete="off">
+                                                <div>
+                                                        <v-text-field v-model="email" type="email" name="email" placeholder="email..." >Email</v-text-field>
+                                                </div>
+                                                <div>
+                                                        <v-text-field v-model="password" type="password" name="password" placeholder="password..." ></v-text-field>
+                                                </div>
+                                                <v-alert v-html="error" :value="error" color="red"></v-alert>
+                                                <div>
+                                                        <v-btn class="cyan" @click="submitUser">Login</v-btn>
+                                                </div>
+                                        </form>
                                 </div>
                         </div>
                 </v-flex>
@@ -44,10 +46,12 @@ export default {
         methods: {
                 async submitUser() {
                         try {
+                                // console.log(this.$store.dispatch);
                                 const response = await AuthService.login({ email: this.email, password: this.password });
-                                // console.log(response.data);
+                                this.$store.dispatch('setToken', response.data.token);
+                                this.$store.dispatch('setUser', response.user);
                         } catch(error) {
-                                // console.log('Error on register new User', error);
+                                // console.log('Error on login user', error);
                                 this.error = error.response.data.error;
                         }
 

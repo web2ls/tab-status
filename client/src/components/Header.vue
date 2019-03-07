@@ -5,17 +5,22 @@
                </v-toolbar-title>
 
                <v-toolbar-items>
-                       <v-btn flat dark>Browse</v-btn>
+                       <v-btn flat dark>
+                               <router-link to="songs">Browse</router-link>
+                       </v-btn>
                </v-toolbar-items>
 
                <v-spacer></v-spacer>
 
-               <v-toolbar-items v-if="!$store.state.isUserLoggedIn">
-                       <v-btn flat dark>
+               <v-toolbar-items>
+                       <v-btn flat dark v-if="!$store.state.isUserLoggedIn">
                                <router-link to="register">Sign Up</router-link>
                         </v-btn>
-                        <v-btn flat dark>
+                        <v-btn flat dark v-if="!$store.state.isUserLoggedIn">
                                 <router-link to="login">Login</router-link>
+                        </v-btn>
+                        <v-btn flat dark v-if="$store.state.isUserLoggedIn" @click="logout">
+                                <span>Logout</span>
                         </v-btn>
                </v-toolbar-items>
         </v-toolbar> 
@@ -23,7 +28,13 @@
 
 <script>
 export default {
-        name: 'PageHeader'
+        name: 'PageHeader',
+        methods: {
+                logout() {
+                        this.$store.dispatch('logout');
+                        this.$router.push({ name: 'home' });
+                }
+        }
         
 }
 </script>

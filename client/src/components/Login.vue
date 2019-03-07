@@ -49,7 +49,7 @@ export default {
                                 // console.log(this.$store.dispatch);
                                 const response = await AuthService.login({ email: this.email, password: this.password });
                                 this.$store.dispatch('setToken', response.data.token);
-                                this.$store.dispatch('setUser', response.user);
+                                this.$store.dispatch('setUser', response.data.user);
                         } catch(error) {
                                 // console.log('Error on login user', error);
                                 this.error = error.response.data.error;

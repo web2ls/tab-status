@@ -2,9 +2,7 @@
         <v-layout>
                 <v-flex xs6 offset-xs3>
                         <div class="white elevation-2">
-                                <v-toolbar class="cyan" flat dense dark>
-                                        <v-toolbar-title>Register</v-toolbar-title>
-                                </v-toolbar>
+                                <panel title="Register" />
 
                                 <div class="pl-4 pr-4 pb-2">
                                         <form name="register-form" autocomplete="off">
@@ -32,6 +30,7 @@
 
 <script>
 import AuthService from '@/services/Authentication';
+import Panel from '@/components/Panel';
 
 export default {
         data() {
@@ -44,7 +43,7 @@ export default {
         methods: {
                 async submitUser() {
                         try {
-                                const response = await AuthService.register({ email: this.email, password: this.password });
+                                await AuthService.register({ email: this.email, password: this.password });
                                 // console.log(response.data);
                         } catch(error) {
                                 // console.log('Error on register new User', error);
@@ -54,6 +53,9 @@ export default {
                         this.email = null;
                         this.password = null;
                 }
+        },
+        components: {
+                Panel
         }
 }
 </script>

@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const config = require('../config/config');
 const getUserModel = require('./User');
+const getSongModel = require('./Song');
 const db = {};
 
 const sequelize = new Sequelize(
@@ -11,8 +12,10 @@ const sequelize = new Sequelize(
 )
 
 const User = getUserModel(Sequelize, sequelize);
+const Song = getSongModel(Sequelize, sequelize);
 
 db['User'] = User;
+db['Song'] = Song;
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

@@ -5,18 +5,16 @@
     </v-toolbar>
 
     <div class="pl-4 pr-4 pb-2">
-            <slot>Not defined conetent</slot>
+
     </div>
   </div>
 </template>
 
 <script>
         export default {
-                data() {
-                        return {
-                                title: 'Hello'
-                        }
-                }
+                props: [
+                        'title'
+                ]
         };
 </script>
 

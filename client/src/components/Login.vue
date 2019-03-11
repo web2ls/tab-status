@@ -2,9 +2,7 @@
         <v-layout>
                 <v-flex xs6 offset-xs3>
                         <div class="white elevation-2">
-                                <v-toolbar class="cyan" flat dense dark>
-                                        <v-toolbar-title>Login</v-toolbar-title>
-                                </v-toolbar>
+                                <panel title="Login" />
 
                                 <div class="pl-4 pr-4 pb-2">
                                         <form name="login-form" autocomplete="off">
@@ -34,6 +32,7 @@
 
 <script>
 import AuthService from '@/services/Authentication';
+import Panel from '@/components/Panel';
 
 export default {
         data() {
@@ -58,6 +57,9 @@ export default {
                         this.email = null;
                         this.password = null;
                 }
+        },
+        components: {
+                Panel
         }
 }
 </script>

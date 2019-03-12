@@ -4,7 +4,7 @@
             <router-link to="/songs/add">Add new song</router-link>
             <panel name="default" title="Songs header" />
             <div v-for="song of songs" :key="song.id">
-                <v-card>
+                <v-card @click="navigateToSong(song.id)">
 
                 <v-card-title primary-title>
                 <div>
@@ -45,6 +45,12 @@ export default {
                         console.log(error);
                 }
                 
+        },
+        methods: {
+                navigateToSong(id) {
+                        console.log(id);
+                        this.$router.push({ name: 'song', params: { id: id } });
+                }
         }
 };
 </script>

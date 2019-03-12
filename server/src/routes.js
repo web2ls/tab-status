@@ -10,5 +10,7 @@ module.exports = (server) => {
 
         server.get('/songs', SongsController.allSongs);
 
-        server.post('/song', SongsController.addSong);
+        server.post('/song/new', SongsController.addSong);
+
+        server.get('/song/:songId', SongsController.getSong);
 }

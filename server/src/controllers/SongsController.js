@@ -1,19 +1,6 @@
 const {db} = require('../models');
 const Song = db.Song;
 
-const songs = [
-        {
-                id: 1,
-                title: 'Go1',
-                author: 'test1'
-        },
-        {
-                id: 2,
-                title: 'Go2',
-                author: 'test2'
-        }
-];
-
 module.exports = {
         async allSongs(req, res) {
                 try {
@@ -32,6 +19,21 @@ module.exports = {
                         res.status(200).send(song);
                 } catch(error) {
                         res.status(500).send({error: 'Error on added new song'});
+                }
+        },
+
+        async getSong(req, res) {
+                try {
+                        console.log(req.params);
+                        const song = await Song.findOne({
+                                where: {
+                                        id: req.params.songId
+                                }
+                        });
+                        console.log('Finded song is: ', song);
+                        res.status(200).send(song);
+                } catch(error) {
+                        res.status(500).send({error: 'Error on getting song'});
                 }
         }
 }
